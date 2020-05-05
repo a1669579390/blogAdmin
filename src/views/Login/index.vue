@@ -17,6 +17,7 @@
     </div>
 </template>
 <script>
+  import {login} from '../../api/login';
   export default {
     data() {
       var validatePass = (rule, value, callback) => {
@@ -38,9 +39,9 @@
       return {
         ruleForm: {
           pass: '',
-          checkPass: '',
-          loading:false
+          checkPass: ''
         },
+        loading:false,
         rules: {
           pass: [
             { validator: validatePass, trigger: 'blur' }
@@ -55,7 +56,9 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            this.loading = true
+            login(this,this.ruleForm)
+            this.loading = false
           } else {
             console.log('error submit!!');
             return false;
