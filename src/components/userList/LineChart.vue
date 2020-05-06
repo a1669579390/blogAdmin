@@ -16,7 +16,7 @@ export default {
     },
     width: {
       type: String,
-      default: '94%'
+      default: '100%'
     },
     height: {
       type: String,
@@ -70,7 +70,6 @@ export default {
             show: false
           }
         },
-        backgroundColor: '#fff',
         grid: {
           left: 10,
           right: 10,
@@ -134,3 +133,5 @@ export default {
   }
 }
 </script>
+<style  scoped>
+</style>

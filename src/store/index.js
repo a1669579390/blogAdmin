@@ -8,7 +8,9 @@ export default new Vuex.Store({
     //用于存放全局变量
     // 侧边栏是否展开 false 展开
     isCollapse:false,
-    user:{}
+    user:{},
+    userpath:'home',
+    breadcurmb:'首页'
   },
   mutations: {
     setUser(state,user){
@@ -16,6 +18,12 @@ export default new Vuex.Store({
     },
     setCollapse(state,isCollapse){
       state.isCollapse = isCollapse
+    },
+    setPath(state,userpath){
+      state.userpath = userpath
+    },
+    setbreadcurmb(state,breadcurmb){
+      state.breadcurmb = breadcurmb
     }
   },
   actions: {

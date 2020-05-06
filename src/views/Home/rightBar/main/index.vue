@@ -1,12 +1,15 @@
 <template>
     <div class="show">
-        <transition name="component-fade" mode="out-in">
-            <component v-bind:is="view"></component>
+        <transition name="slide-fade" mode="out-in">
+            <keep-alive>
+                <component v-bind:is="view"></component>
+            </keep-alive>                      
         </transition>
     </div>
 
 </template>
 <script>
+import { mapState } from 'vuex';
 import home from '@/components/userList';
 export default {
     data(){
@@ -14,8 +17,23 @@ export default {
             view:'home'
         }
     },
+    computed:{
+        ...mapState(['userpath']),
+    },
     components:{
-        home
+        home,
+        userasp:()=>import('@/components/userasp'),
+        articleControl:()=>import('../../tinymce')
+    },
+
+    watch:{
+        userpath(){
+            this.$nextTick(()=>{
+                 this.view = this.userpath 
+            })        
+        }
+    },
+    created(){
     }
 }
 </script>
@@ -28,7 +46,7 @@ export default {
     }
     .slide-fade-enter, .slide-fade-leave-to
         /* .slide-fade-leave-active for below version 2.1.8 */ {
-        transform: translateX(20px);
+        transform: translateY(20px);
         opacity: 0;
     }
     .show{

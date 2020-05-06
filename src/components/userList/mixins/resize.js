@@ -11,6 +11,7 @@ export default {
     this.$_resizeHandler = debounce(() => {
       if (this.chart) {
         this.chart.resize()
+        console.log(1)
       }
     }, 100)
     this.$_initResizeEvent()

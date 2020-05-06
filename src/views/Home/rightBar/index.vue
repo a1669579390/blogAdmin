@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-       <navbar class="navbar"></navbar>
-        <app-main class="main"></app-main>
+        <navbar class="navbar"></navbar>
+        <app-main class="main"></app-main>    
     </div>
 </template>
 <script>
@@ -31,7 +31,17 @@ export default {
     .main{
         width: 100%;
         height: 100%;
-        /* background-color: green; */
+    }
+    .slide-fade-enter-active {
+        transition: all .5s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+        /* .slide-fade-leave-active for below version 2.1.8 */ {
+        transform: translateY(10px);
+        opacity: 0;
     }
 </style>
 

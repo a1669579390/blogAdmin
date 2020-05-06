@@ -1,7 +1,13 @@
 <template>
     <div class="shouye">
+      <transition name="slide-fade" mode="out-in" appear>
         <list></list>
-        <line-chart class="chart" :chart-data="lineChartData" />
+      </transition>
+      <transition name="slide-fade" mode="out-in" appear>
+        <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;margin-top:5%">
+          <line-chart class="charts" :chart-data="lineChartData" />
+        </el-row> 
+      </transition>        
     </div>
 </template>
 <script>
@@ -19,8 +25,11 @@ export default {
             lineChartData: lineChartData.newVisitis
         }
     },
-    methods:{
-    },
+    methods: {
+    handleSetLineChartData(type) {
+      this.lineChartData = lineChartData[type]
+    }
+  },
     components:{
         list,
         LineChart
@@ -28,8 +37,21 @@ export default {
 }
 </script>
 <style  scoped>
-.chart{
-    width: 100%;
-    padding: 6% 0 0 3%;
+.shouye{
+    padding: 0 32px;
 }
+.charts>>>div:nth-child(1){
+    margin: 0 auto !important;
+}
+        .slide-fade-enter-active {
+        transition: all .5s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+        /* .slide-fade-leave-active for below version 2.1.8 */ {
+        transform: translateY(20px);
+        opacity: 0;
+    }
 </style>

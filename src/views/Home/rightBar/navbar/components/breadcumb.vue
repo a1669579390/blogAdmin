@@ -8,7 +8,7 @@
                     ></i>
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-                    <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+                    <el-breadcrumb-item v-if="breadcurmb!='首页'">{{breadcurmb}}</el-breadcrumb-item>
                 </el-breadcrumb> 
             </div>
             <div class="breadcrumb_2">
@@ -34,7 +34,8 @@ export default {
     data(){
         return{
             icon:'el-icon-s-fold',
-            avatar:avatar
+            avatar:avatar,
+            path:''
         }
     },
     components:{
@@ -47,7 +48,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['isCollapse'])
+        ...mapState(['isCollapse','breadcurmb'])
     },
 }
 </script>
@@ -60,6 +61,7 @@ export default {
         background: #fff;
         -webkit-box-shadow: 0 1px 4px rgba(0,21,41,0.08);
         box-shadow: 0 1px 4px rgba(0,21,41,0.08);
+        padding: 5px 0 0 0;
     }
     .breadcrumb_1{
         width: 90%;      
@@ -82,7 +84,7 @@ export default {
     }
     .slide-fade-enter, .slide-fade-leave-to
         /* .slide-fade-leave-active for below version 2.1.8 */ {
-        transform: translateX(20px);
+        transform: translateY(10px);
         opacity: 0;
     }
 </style>
