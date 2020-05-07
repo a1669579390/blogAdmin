@@ -23,17 +23,25 @@
                 <span slot="title">用户管理</span>
               </div>               
             </el-menu-item>
-            <el-menu-item index="3">
-              <div @click="redirect('articleControl','博客管理')">
-                <i class="el-icon-s-order"></i>
-                <span slot="title">博客管理</span>
-              </div>
-            </el-menu-item>
+                <el-submenu index="3">
+                    <template slot="title">
+                        <div>
+                            <i class="el-icon-s-order"></i>
+                            <span slot="title">博客管理</span>
+                        </div>
+                    </template>
+                <el-menu-item-group>
+                      <el-menu-item index="3-1" @click="redirect('articleControl','博客管理')">
+                        博客添加
+                      </el-menu-item>
+                      <el-menu-item index="3-2">博客修改</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
             <el-menu-item index="4">
-              <div @click="redirect($event)">
-                <i class="el-icon-s-comment"></i>
-                <span slot="title">消息通知</span>
-              </div>
+                <div @click="redirect($event)">
+                    <i class="el-icon-s-comment"></i>
+                    <span slot="title">消息通知</span>
+                </div>
             </el-menu-item>
         </el-menu>
     </div>

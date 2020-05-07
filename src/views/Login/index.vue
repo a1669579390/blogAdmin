@@ -1,5 +1,5 @@
 <template>
-    <div class="login-container">
+    <div class="login-container"  v-on:keyup.enter="submitForm('ruleForm')" >
         <div class="form">
             <div class="title">后台管理系统</div>
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">

@@ -1,7 +1,6 @@
 <template>
   <div class='tinymce'>
-    <editor id='tinymce' v-model='tinymceHtml' :init='init'></editor>
-    <div v-html='tinymceHtml'></div>
+    <editor id='tinymce' v-model='tinymceHtml' @input="sendTinymce" :init='init'></editor>
   </div>
 </template>
 
@@ -13,12 +12,12 @@ import 'tinymce/plugins/image'
 import 'tinymce/plugins/link'
 import 'tinymce/plugins/code'
 import 'tinymce/plugins/table'
+import 'tinymce/plugins/fullscreen'
+import 'tinymce/plugins/save'
 import 'tinymce/plugins/lists'
-import 'tinymce/plugins/contextmenu'
 import 'tinymce/plugins/wordcount'
-import 'tinymce/plugins/colorpicker'
 import 'tinymce/plugins/textcolor'
-import 'tinymce/skins/ui/oxide/skin.css'//解决引入之后不显示富文本
+import 'tinymce/skins/ui/oxide/skin.min.css'//解决引入之后不显示富文本
 export default {
   name: 'tinymce',
   data () {
@@ -27,11 +26,10 @@ export default {
       init: {
         language_url: './tinymce/langs/zh_CN.js',
         language: 'zh_CN',
-        skin_url: './skins/content/dark',
-        height: 300,
-        plugins: 'link lists image code table colorpicker textcolor wordcount contextmenu',
+        height: 450,
+        plugins: 'link lists image code table  wordcount fullscreen',
         toolbar:
-          'bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink image code | removeformat',
+          'bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink image code | removeformat |fullscreen',
         branding: false
       }
     }
@@ -39,6 +37,11 @@ export default {
   mounted () {
     tinymce.init({})
   },
-  components: {Editor}
+  components: {Editor},
+  methods:{
+    sendTinymce(){
+        this.$emit('send',this.tinymceHtml)
+    }
+  }
 }
 </script>

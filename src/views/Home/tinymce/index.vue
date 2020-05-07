@@ -1,25 +1,27 @@
 <template>
-  <div>
-    {{ msg }}
-    <tinymce-editor v-model="msg"
-      :disabled="disabled"
-      @onClick="onClick"
-      ref="editor"></tinymce-editor>
-    <button @click="clear">清空内容</button>
-    <button @click="disabled = true">禁用</button>
+  <div class="forms">
+      <fromCtrol></fromCtrol>
+      <tinymce-editor
+        :disabled="disabled"
+        @onClick="onClick"
+        ref="editor"
+        @send="getTinymce">
+      </tinymce-editor>
   </div>
 </template>
 
 <script>
 import TinymceEditor from '../../../../public/tinymce'
+import fromCtrol from '@/components/formControl'
 export default {
   components: {
-    TinymceEditor
+    TinymceEditor,
+    fromCtrol
   },
   data() {
     return {
-      msg: 'Welcome to Use Tinymce Editor',
-      disabled: false
+      disabled: false,
+      tinymce:''
     }
   },
   methods: {
@@ -29,13 +31,20 @@ export default {
       console.log(e)
       console.log(editor)
     },
-    //清空内容
-    clear() {
-      this.$refs.editor.clear()
+    getTinymce(data){
+      this.tinymce = data
+      console.log(this.tinymce)
     }
   }
 }
 </script>
 
 <style scoped>
+.forms{
+  width: 94%;
+  margin: 0 auto;
+}
+.forms>>>.el-form-item__label{
+  text-align: center;
+}
 </style>
